@@ -1,15 +1,17 @@
+//http://stackoverflow.com/questions/1398307/how-can-i-allocate-memory-and-return-it-via-a-pointer-parameter-to-the-calling
+
 #include <stdio.h>
 #include <stdlib.h>
 
 void my_function(int *ptr);
-void my_alloc(int *ptr);
+void apm_alloc(int **ptr);
 
 int main()
 {
   int *ptr;
   float *ptrf;
   
-  my_alloc(ptr);
+  apm_alloc(&ptr);
   ptrf = malloc(sizeof(*ptr));
 
   ptr[0]=1;
@@ -27,11 +29,10 @@ int main()
   free(ptrf);
 }
 
-void my_alloc(int *ptr)
+void apm_alloc(int **ptr)
 {
-  // Cela ne marche pas!
-
-  ptr = malloc(2*sizeof(*ptr));
+  // Pas certain de sizeof(**ptr)
+  *ptr = malloc(2*sizeof(**ptr));
   return;
 }
 
