@@ -1,9 +1,9 @@
-FLAGS=-Wall -g
+CFLAGS=-Wall -g
 
-all: ex1 ex3 ex4 ex5 ex6 ex7
+all: ex1 ex3 ex4 ex5 ex6 ex7 ex9 ex10
 
 clean:
-	rm -f ex1 ex3 ex4 ex5 ex6 ex7
+	rm -f ex1 ex3 ex4 ex5 ex6 ex7 ex9 ex10
 
 
 
