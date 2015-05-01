@@ -1,4 +1,4 @@
-// Insperer de :
+// Inspirer de :
 // http://www.tutorialspoint.com/cprogramming/c_pointers.htm
 
 #include <stdio.h>
