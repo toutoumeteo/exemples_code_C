@@ -1,8 +1,11 @@
 module vGrid_Descriptors
-  use iso_c_binding
+
+  use iso_c_binding, only : c_ptr
+
   implicit none
   
   type vgrid_descriptor
+     ! The only member of this type is a C pointer
      type(c_ptr) :: cptr
   end type vgrid_descriptor
 
@@ -27,6 +30,7 @@ module vGrid_Descriptors
 contains
 
   integer function new_gen(self) result(istat)
+    ! Wrapper function to C vgd_new_c
     type(vgrid_descriptor) :: self
     istat =0;
     self%cptr = vgd_new_c()
@@ -34,6 +38,7 @@ contains
   end function new_gen
 
    integer function print_descript(self) result(istat)
+     ! Wrapper function to C vgd_print_c
     type(vgrid_descriptor) :: self
     istat =0;
     call vgd_print_c(self%cptr)

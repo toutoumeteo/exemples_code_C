@@ -10,14 +10,19 @@ F_OBJECTS = vgrid_descriptors.o use_vgrid_f.o
 %.o: %.f90
 	$(FC) -c $<
 
+defaul: use_vgrid_f
+
 use_vgrid_c: use_vgrid_c.c $(C_OBJECTS) $(F_OBJECTS)
-	$(CC) use_vgrid_c.c -o use_vgrid_c $(C_OBJECTS)
+	$(CC) $@.c -o $@ $(C_OBJECTS)
 
 use_vgrid_f: $(C_OBJECTS) $(F_OBJECTS)
-	$(FC) $(C_OBJECTS) $(F_OBJECTS) -o use_vgrid_f
+	$(FC) $(C_OBJECTS) $(F_OBJECTS) -o $@
 
 clean: 
-	rm -f *.o ;\
+	rm -f *.o *.mod ;\
 
 distclean: clean
 	rm -f use_vgrid_c use_vgrid_f ;\
+
+bigclean: distclean
+	rm -f *~ ;\
