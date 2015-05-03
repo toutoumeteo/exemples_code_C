@@ -1,4 +1,5 @@
 *~
 *.o
+*.mod
 a.out
 *_Abs
