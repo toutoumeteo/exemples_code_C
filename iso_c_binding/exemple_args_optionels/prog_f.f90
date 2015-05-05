@@ -47,11 +47,11 @@ integer function my_func(F_i, F_f, F_io, F_fo) result(stat)
   !
   ! This function calls function c_optional which simulates option arguments via the usage of C_NULL_PTR
   !
-  ! If an optional argument is present, e.g. integer F_io (io for interger optional)
+  ! If an optional argument is present, e.g. integer F_io (for Interger Optional)
   !
   !    The value of F_io is copied in io_CI which is of type c_int (_CI for C).
   !    Variable io_CI must be a target since we need to get its C location
-  !    with iso_c_binding c_loc function.
+  !    with iso_c_binding c_loc(io_CI) function.
   !
   !    integer(c_int), target :: io_CI
   !
@@ -60,7 +60,7 @@ integer function my_func(F_i, F_f, F_io, F_fo) result(stat)
   !    type(c_ptr) :: io_CP
   !
   !    This pointer will be passed to the C function by value (pointer value).
-  !    This is why the attribute value is added to its declaration in the
+  !    This is why the 'value' attribute is added to its declaration in the
   !    c function interface.
   !
   !    type(c_ptr),value :: F_io
@@ -72,7 +72,11 @@ integer function my_func(F_i, F_f, F_io, F_fo) result(stat)
   !
   ! The C function check if the pointer is NULL to find out if the option must be
   ! done or not.
-
+  !
+  ! Questions : It look like the us of the intermediate variable io_CI is not
+  !             necessary if we add the attribute 'target' to F_io
+  !             (see the "Can we do this?" comments below)
+  
   use iso_c_binding, only : c_int, c_float, c_ptr, c_loc, C_NULL_PTR
 
   implicit none
@@ -90,6 +94,7 @@ integer function my_func(F_i, F_f, F_io, F_fo) result(stat)
   integer :: F_i
   real :: F_f
   integer, optional :: F_io
+  ! Can we do this? integer, target, optional :: F_io
   real, optional :: f_fo 
 
   ! Local variables
@@ -106,6 +111,7 @@ integer function my_func(F_i, F_f, F_io, F_fo) result(stat)
      print*,'F_io = ',F_io
      io_CI=F_io
      io_CP = c_loc(io_CI)
+     ! Can we do this? io_CP = c_loc(F_io)
   else
      io_CP = C_NULL_PTR
   endif
