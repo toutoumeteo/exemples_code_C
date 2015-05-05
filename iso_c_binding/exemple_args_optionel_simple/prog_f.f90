@@ -12,6 +12,9 @@ program prog_f
        implicit none
        integer :: man
        integer, optional :: opt
+       ! Can we do this instead?
+       ! Can an optional argument be a target?
+       ! integer, target, optional :: opt
      end function my_func
   end interface
 
@@ -64,7 +67,7 @@ integer function my_func(man, opt) result(stat)
   ! Question : It look like the use of the intermediate variable opt_CI is not
   !            necessary if we add the attribute 'target' to opt.
   !            (see the "Can we do this?" comments below)
-  !            However, the documentation of c_loc() 
+  !            The documentation of c_loc() is not clean to me on that mather.
   
   use iso_c_binding, only : c_int, c_float, c_ptr, c_loc, C_NULL_PTR, c_associated
 
