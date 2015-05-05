@@ -1,7 +1,7 @@
 CC = gcc
 FC = gfortran
 
-C_OBJECTS = 
+C_OBJECTS = c_print_string.o
 F_OBJECTS = prog_f.o
 
 %.o: %.c
