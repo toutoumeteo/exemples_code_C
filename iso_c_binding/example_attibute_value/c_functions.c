@@ -19,6 +19,7 @@ void c_sub2(int **varpp, int *varpv)
   printf("\n");
   printf("   In c_sub2   pointer varpv points to address                :   varpv =  %p\n",   varpv);
   printf("   In c_sub2   value at that address is the final distination :  *varpv =  %d\n",  *varpv);
+  printf("   In c_sub2   address of pointer varpv is local              :  &varpv =  %p\n",  &varpv);
   printf("\n");
 }
 
