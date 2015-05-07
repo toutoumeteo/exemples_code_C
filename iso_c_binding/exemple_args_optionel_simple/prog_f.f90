@@ -82,10 +82,10 @@ integer function my_func(man, opt) result(stat)
   end interface
 
   integer, intent(in) :: man
-  integer, intent(in), optional :: opt
+  !integer, intent(in), optional :: opt
   ! Can we do this instead?
   ! Can an optional argument be a target?
-  ! integer, intent(in), target, optional :: opt
+  integer, intent(in), target, optional :: opt
 
   ! Local variables, this may not be need if we can do the above
   !integer(c_int), target :: opt_CI
@@ -98,7 +98,7 @@ integer function my_func(man, opt) result(stat)
      !opt_CI=opt
      !opt_CP = c_loc(opt_CI)
      ! Can we do this and avoid intermidiate variable opt_CI
-      opt_CP = c_loc(opt)
+     opt_CP = c_loc(opt)
   else
      opt_CP = C_NULL_PTR
   endif
