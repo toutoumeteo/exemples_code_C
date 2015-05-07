@@ -1,0 +1,15 @@
+In main : addresse of var from  c_loc(var) is : varp = a1
+
+   In c_sub1   pointer varp points to address  :  varp =  a1
+   In c_sub1   value at that address           : *varp =  2
+   In c_sub1   address of varv is local to s/r : &varv =  a4
+   In c_sub1   Value at this address           :  varv =  2
+
+In main : addresse of varp from  c_loc(varp) is : varpp = a2
+
+   In c_sub2   pointer to pointer varpp points to address     :   varpp =  a2
+   In c_sub2   address contained at that location is          :  *varpp =  a1
+   In c_sub2   value at that address is the final distination : **varpp =  2
+
+   In c_sub2   pointer varpv points to address                :   varpv =  a1
+   In c_sub2   value at that address is the final distination :  *varpv =  2
