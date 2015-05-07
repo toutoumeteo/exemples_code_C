@@ -18,7 +18,7 @@ program prog_f
      end function my_func
   end interface
 
-  integer :: ier
+  integer :: ier, opt
 
   print*,'==================================='
   print*,'Passing only the mandatory argument'
@@ -82,10 +82,10 @@ integer function my_func(man, opt) result(stat)
   end interface
 
   integer, intent(in) :: man
-  !integer, intent(in), optional :: opt
+  integer, intent(in), optional :: opt
   ! Can we do this instead?
   ! Can an optional argument be a target?
-   integer, target, optional :: opt
+  ! integer, intent(in), target, optional :: opt
 
   ! Local variables, this may not be need if we can do the above
   !integer(c_int), target :: opt_CI
