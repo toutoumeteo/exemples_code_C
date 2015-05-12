@@ -131,7 +131,7 @@ TVGrid *VGD_New() {
  */
 void VGD_Free(TVGrid *VGrid) {
   printf("\tDans VGD_free cote C, VGrid = %p\n",VGrid);
-  printf("\tDans VGD_free cote C, VGrid->a_m_8 = %p\n",VGrid->a_m_8);
+  //printf("\tDans VGD_free cote C, (*VGrid)->a_m_8 = %p\n",(*VGrid)->a_m_8);
    if( VGrid ) {
       FREE(VGrid->table);
       FREE(VGrid->a_m_8);
@@ -142,7 +142,29 @@ void VGD_Free(TVGrid *VGrid) {
       FREE(VGrid->ip1_t);
       FREE(VGrid->ref_name);
 
+      printf("\tfreeing\n");
       free(VGrid);
+      VGrid = NULL;
+      printf("\tDans VGD_free cote C, VGrid = %p\n",VGrid);
+   }
+}
+void VGD_Free2(TVGrid **VGrid) {
+  printf("\tDans VGD_free2 cote C, *VGrid = %p\n",*VGrid);
+  //printf("\tDans VGD_free2 cote C, (*VGrid)->a_m_8 = %p\n",(*VGrid)->a_m_8);
+   if( *VGrid ) {
+      FREE((*VGrid)->table);
+      FREE((*VGrid)->a_m_8);
+      FREE((*VGrid)->b_m_8);
+      FREE((*VGrid)->a_t_8);
+      FREE((*VGrid)->b_t_8);
+      FREE((*VGrid)->ip1_m);
+      FREE((*VGrid)->ip1_t);
+      FREE((*VGrid)->ref_name);
+
+      printf("\tfreeing\n");
+      free(*VGrid);
+      *VGrid = NULL;
+      printf("\tDans VGD_free2 cote C, *VGrid = %p\n",*VGrid);
    }
 }
 
