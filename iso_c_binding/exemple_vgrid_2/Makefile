@@ -5,10 +5,10 @@ C_OBJECTS = vgrid.o
 F_OBJECTS = vgrid_descriptors.o use_vgrid_f.o
 
 %.o: %.c
-	$(CC) -c $<
+	$(CC) -c $< -g
 
 %.o: %.f90
-	$(FC) -c $<
+	$(FC) -c $< -g -C
 
 defaul: use_vgrid_f
 

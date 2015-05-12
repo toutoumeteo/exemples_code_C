@@ -130,6 +130,8 @@ TVGrid *VGD_New() {
  *----------------------------------------------------------------------------
  */
 void VGD_Free(TVGrid *VGrid) {
+  printf("\tDans VGD_free cote C, VGrid = %p\n",VGrid);
+  printf("\tDans VGD_free cote C, VGrid->a_m_8 = %p\n",VGrid->a_m_8);
    if( VGrid ) {
       FREE(VGrid->table);
       FREE(VGrid->a_m_8);

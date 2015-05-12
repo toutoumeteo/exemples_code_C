@@ -10,13 +10,21 @@ module vGrid_Descriptors
   end type vgrid_descriptor
 
   interface
+
      type(c_ptr) function vgd_new_c () bind(c,name='VGD_New')
        import :: c_ptr
      end function vgd_new_c
+
      subroutine vgd_print_c(vgd) bind(c,name='VGD_Print')
        import :: c_ptr
        type(c_ptr), value :: vgd
      end subroutine vgd_print_c
+
+     subroutine vgd_free_c(vgd) bind(c,name='VGD_Free')
+        import :: c_ptr
+       type(c_ptr), value :: vgd
+     end subroutine vgd_free_c
+
   end interface
 
   interface vgd_new
@@ -26,6 +34,10 @@ module vGrid_Descriptors
   interface vgd_print
      module procedure print_descript
   end interface vgd_print
+
+  interface vgd_free
+     module procedure garbage_collection
+  end interface vgd_free
 
 contains
 
@@ -37,14 +49,21 @@ contains
     istat =1;
   end function new_gen
 
-   integer function print_descript(self) result(istat)
+  integer function print_descript(self) result(istat)
      ! Wrapper function to C vgd_print_c
-    type(vgrid_descriptor) :: self
-    istat =0;
-    call vgd_print_c(self%cptr)
-    istat =1;
+     type(vgrid_descriptor) :: self
+     istat =0;
+     call vgd_print_c(self%cptr)
+     istat =1;
   end function print_descript
- 
   
+  integer function garbage_collection(self) result(istat)
+     ! Wrapper function to C vgd_free_c
+     type(vgrid_descriptor) :: self
+     istat =0;
+     call vgd_free_c(self%cptr)
+     istat =1;
+  end function garbage_collection
+
 end module vGrid_Descriptors
 
