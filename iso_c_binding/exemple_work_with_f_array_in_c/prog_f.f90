@@ -6,11 +6,11 @@ program prog_f
 
    interface
 
-      subroutine c_recieve_vec(vecp,size) bind(c)
+      subroutine c_vec_mlt_by_2(vecp,size) bind(c)
          use iso_c_binding, only : c_ptr, c_int
          type(c_ptr), value :: vecp
          integer(c_int), value :: size
-      end subroutine c_recieve_vec
+       end subroutine c_vec_mlt_by_2
 
    end interface
 
@@ -37,12 +37,12 @@ program prog_f
    vec_CP = c_loc( vec( lbound_3d(1),lbound_3d(2),lbound_3d(3) ) )
    write(6,'("In Fortran vec_CP",z16)')vec_CP
    print*,'In Fortran, value are',vec
-   call c_recieve_vec(vec_CP,size(vec))
+   call c_vec_mlt_by_2(vec_CP,size(vec))
 
    vec_CP = c_loc(vec2)
    write(6,'("In Fortran vec_CP",z16)')vec_CP
-   call c_recieve_vec(vec_CP,size(vec2))
+   call c_vec_mlt_by_2(vec_CP,size(vec2))
 
-   
+   print*,'`Back in Fortran, value are',vec
 
 end program prog_f
