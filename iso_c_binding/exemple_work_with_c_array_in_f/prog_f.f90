@@ -22,5 +22,8 @@ program demo_c_f_pointer
   call C_F_POINTER (cptr_to_array, array, [n_elements])
   ! Print value
   print *, array
+
+  print*,"size(array)=",size(array)
+  print*,"associated(array)=",associated(array)
   
 end program demo_c_f_pointer
